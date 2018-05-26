@@ -3,7 +3,7 @@ import GeneratorFirebase from '../utils/firebaseInterface/firebaseInterface.js'
 
 export default class Message extends Model{
 
-  constructor({ name, text }){
+  constructor({ name , text }){
     super(new GeneratorFirebase('messages'));
     this._id =  {value: ''}
     this.name = { rules:'', value: name};

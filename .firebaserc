@@ -1,6 +1,7 @@
 {
   "projects": {
     "default": "todo-app-e872e",
-    "todo-app": "todo-app-e872e"
+    "todo-app": "todo-app-e872e",
+    "teste": "todo-app-e872e"
   }
 }

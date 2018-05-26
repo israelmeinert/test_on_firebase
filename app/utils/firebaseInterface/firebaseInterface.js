@@ -1,7 +1,6 @@
 // Initialize Firebase
-var config = {
-  
-};
+import { firebaseConfig } from '../../env.js';
+var config = firebaseConfig.config;
 const app = firebase.initializeApp(config);
 
 export default class GeneratorFirebase{

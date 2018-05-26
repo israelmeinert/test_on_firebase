@@ -7,13 +7,13 @@ export default class Model {
 
   _getKeys(objectToGetKeys){
     const object = {};
-    const keys = this._getValidKeys(objectToGetKeys); 
+    const keys = this._checkKeyIsNotPrivate(objectToGetKeys); 
     keys.forEach(key => object[key] = objectToGetKeys[key] ? objectToGetKeys[key].value : '' );
     return object;
   }
 
   _checkKeyIsNotPrivate(objectToGetKeys){
-    return Object.keys(objectToGetKeys).filter(key => key.includes('_'));
+    return Object.keys(objectToGetKeys).filter(key => !key.includes('_'));
   }
 
   toJSON(){
@@ -42,18 +42,22 @@ export default class Model {
     this._db.update(this._id, this.toObject());
   }
   static changes(listener){
+    const object = this._db ? this : new this({}); 
     this._db.on_changed(listener);
   }
   static added(listener){
+    const object = this._db ? this : new this({}); 
     this._db.on_added(listener);
   }
   static removed(listener){
+    const object = this._db ? this : new this({}); 
     this._db.on_removed(listener);
   }
   static updates(listener){
-    this._db.on_added(listener);
-    this._db.on_changed(listener);
-    this._db.on_removed(listener);
+    const object = this._db ? this : new this({}); 
+    object._db.on_added(listener);
+    object._db.on_changed(listener);
+    object._db.on_removed(listener);
   }
 
 
